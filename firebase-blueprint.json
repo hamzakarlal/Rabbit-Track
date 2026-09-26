@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "fullName": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "farmId": { "type": "string" },
+        "farmName": { "type": "string" },
+        "farmLocation": { "type": "string" },
+        "farmDescription": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "farmId", "farmName"]
+    },
+    "Rabbit": {
+      "title": "Rabbit",
+      "description": "Registered rabbit entry",
+      "type": "object",
+      "properties": {
+        "rabbitId": { "type": "string" },
+        "name": { "type": "string" },
+        "gender": { "type": "string", "enum": ["male", "female"] },
+        "breed": { "type": "string" },
+        "color": { "type": "string" },
+        "dateOfBirth": { "type": "string" },
+        "weight": { "type": "number" },
+        "status": { "type": "string" },
+        "cageNumber": { "type": "string" }
+      },
+      "required": ["rabbitId", "name", "gender", "breed", "weight", "status", "cageNumber"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile collection"
+    },
+    "/farms/{farmId}/rabbits/{rabbitId}": {
+      "schema": "Rabbit",
+      "description": "Farm rabbits collection"
+    }
+  }
+}
